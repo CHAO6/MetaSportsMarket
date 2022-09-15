@@ -46,14 +46,3 @@ export function fetchTokenURI(collectionAddress: Address, tokenId: BigInt): stri
 
   return null;
 }
-
-export function fetchBunnyId(collectionAddress: Address, tokenId: BigInt): BigInt | null {
-  let contract = MetaSportsNFT.bind(collectionAddress);
-
-  let bunnyIdResult = contract.try_getBunnyId(tokenId);
-  if (!bunnyIdResult.reverted) {
-    return BigInt.fromI32(bunnyIdResult.value);
-  }
-
-  return null;
-}

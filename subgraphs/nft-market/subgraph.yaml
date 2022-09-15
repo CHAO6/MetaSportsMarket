@@ -8,9 +8,9 @@ dataSources:
     name: MetaSportsNFTMarket
     network: chapel
     source:
-      address: "0xE0Cbd8b017B133a676A4d9798a77c8fc2ddF8254"
+      address: "0xd7f7C520d94E6278b43396f37815ab50d086b3f1"
       abi: MetaSportsNFTMarket
-      startBlock: 19380000
+      startBlock: 22830344
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -32,17 +32,17 @@ dataSources:
       eventHandlers:
         - event: AskCancel(indexed address,indexed address,indexed uint256)
           handler: handleAskCancel
-        - event: AskNew(indexed address,indexed address,indexed uint256,uint256)
+        - event: AskNew(indexed address,indexed address,indexed uint256,address,uint256)
           handler: handleAskNew
-        - event: AskUpdate(indexed address,indexed address,indexed uint256,uint256)
+        - event: AskUpdate(indexed address,indexed address,indexed uint256,address,uint256)
           handler: handleAskUpdate
         - event: CollectionClose(indexed address)
           handler: handleCollectionClose
-        - event: CollectionNew(indexed address,indexed address,indexed address,uint256,uint256)
+        - event: CollectionNew(indexed address,indexed address,address,indexed address,uint256,uint256)
           handler: handleCollectionNew
-        - event: CollectionUpdate(indexed address,indexed address,indexed address,uint256,uint256)
+        - event: CollectionUpdate(indexed address,indexed address,address,indexed address,uint256,uint256)
           handler: handleCollectionUpdate
-        - event: RevenueClaim(indexed address,uint256)
+        - event: RevenueClaim(indexed address,uint256,indexed address)
           handler: handleRevenueClaim
-        - event: Trade(indexed address,indexed uint256,indexed address,address,uint256,uint256,bool)
+        - event: Trade(indexed address,indexed uint256,indexed address,address,uint256,uint256,address)
           handler: handleTrade

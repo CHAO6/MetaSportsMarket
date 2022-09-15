@@ -12,11 +12,6 @@
         "type": "address"
       },
       {
-        "internalType": "address",
-        "name": "_WBNBAddress",
-        "type": "address"
-      },
-      {
         "internalType": "uint256",
         "name": "_minimumAskPrice",
         "type": "uint256"
@@ -78,6 +73,12 @@
       },
       {
         "indexed": false,
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
         "internalType": "uint256",
         "name": "askPrice",
         "type": "uint256"
@@ -106,6 +107,12 @@
         "internalType": "uint256",
         "name": "tokenId",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
       },
       {
         "indexed": false,
@@ -146,6 +153,12 @@
         "type": "address"
       },
       {
+        "indexed": false,
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      },
+      {
         "indexed": true,
         "internalType": "address",
         "name": "whitelistChecker",
@@ -180,6 +193,12 @@
         "indexed": true,
         "internalType": "address",
         "name": "creator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "tokenAddress",
         "type": "address"
       },
       {
@@ -275,6 +294,12 @@
         "internalType": "uint256",
         "name": "amount",
         "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
       }
     ],
     "name": "RevenueClaim",
@@ -340,9 +365,9 @@
       },
       {
         "indexed": false,
-        "internalType": "bool",
-        "name": "withBNB",
-        "type": "bool"
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
       }
     ],
     "name": "Trade",
@@ -362,19 +387,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "WBNB",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
@@ -384,6 +396,11 @@
       {
         "internalType": "address",
         "name": "_creator",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_tokenAddress",
         "type": "address"
       },
       {
@@ -431,24 +448,11 @@
         "internalType": "uint256",
         "name": "_tokenId",
         "type": "uint256"
-      }
-    ],
-    "name": "buyTokenUsingBNB",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_collection",
-        "type": "address"
       },
       {
-        "internalType": "uint256",
-        "name": "_tokenId",
-        "type": "uint256"
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
       },
       {
         "internalType": "uint256",
@@ -456,7 +460,7 @@
         "type": "uint256"
       }
     ],
-    "name": "buyTokenUsingWBNB",
+    "name": "buyNFTUsingToken",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -538,7 +542,13 @@
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
+      }
+    ],
     "name": "claimPendingRevenue",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -568,6 +578,11 @@
         "internalType": "uint256",
         "name": "_tokenId",
         "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
       },
       {
         "internalType": "uint256",
@@ -614,6 +629,11 @@
         "type": "address"
       },
       {
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
+      },
+      {
         "internalType": "uint256",
         "name": "_tokenId",
         "type": "uint256"
@@ -639,6 +659,11 @@
       {
         "internalType": "address",
         "name": "_creator",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_tokenAddress",
         "type": "address"
       },
       {
@@ -856,12 +881,17 @@
             "type": "address"
           },
           {
+            "internalType": "address",
+            "name": "tokenAddress",
+            "type": "address"
+          },
+          {
             "internalType": "uint256",
             "name": "price",
             "type": "uint256"
           }
         ],
-        "internalType": "struct MDao3NFTMarket.Ask[]",
+        "internalType": "struct MetaSportsNFTMarket.Ask[]",
         "name": "askInfo",
         "type": "tuple[]"
       },
@@ -912,12 +942,17 @@
             "type": "address"
           },
           {
+            "internalType": "address",
+            "name": "tokenAddress",
+            "type": "address"
+          },
+          {
             "internalType": "uint256",
             "name": "price",
             "type": "uint256"
           }
         ],
-        "internalType": "struct MDao3NFTMarket.Ask[]",
+        "internalType": "struct MetaSportsNFTMarket.Ask[]",
         "name": "askInfo",
         "type": "tuple[]"
       },
@@ -958,12 +993,17 @@
             "type": "address"
           },
           {
+            "internalType": "address",
+            "name": "tokenAddress",
+            "type": "address"
+          },
+          {
             "internalType": "uint256",
             "name": "price",
             "type": "uint256"
           }
         ],
-        "internalType": "struct MDao3NFTMarket.Ask[]",
+        "internalType": "struct MetaSportsNFTMarket.Ask[]",
         "name": "askInfo",
         "type": "tuple[]"
       }
@@ -994,13 +1034,18 @@
       {
         "components": [
           {
-            "internalType": "enum MDao3NFTMarket.CollectionStatus",
+            "internalType": "enum MetaSportsNFTMarket.CollectionStatus",
             "name": "status",
             "type": "uint8"
           },
           {
             "internalType": "address",
             "name": "creatorAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenAddress",
             "type": "address"
           },
           {
@@ -1019,7 +1064,7 @@
             "type": "uint256"
           }
         ],
-        "internalType": "struct MDao3NFTMarket.Collection[]",
+        "internalType": "struct MetaSportsNFTMarket.Collection[]",
         "name": "collectionDetails",
         "type": "tuple[]"
       },

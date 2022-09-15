@@ -24,8 +24,8 @@ type Collection @entity {
   "totalSupply"
   totalSupply: BigInt
 
-  "Total volume of collection traded (in BNB)"
-  totalVolumeBNB: BigDecimal!
+  "Total volume of collection traded (in Token)"
+  totalVolumeToken: BigDecimal!
 
   "Number tokens listed"
   numberTokensListed: BigInt!
@@ -57,11 +57,11 @@ type NFT @entity {
   "tokenId"
   tokenId: BigInt!
 
-  "otherId"
-  otherId: BigInt
-
   "Collection address"
   collection: Collection!
+
+  "Token contract address"
+   tokenAddress: String!
 
   "Metadata url"
   metadataUrl: String
@@ -75,11 +75,11 @@ type NFT @entity {
   "Current seller"
   currentSeller: String!
 
-  "Latest traded price in BNB"
-  latestTradedPriceInBNB: BigDecimal!
+  "Latest traded price in Token"
+  latestTradedPriceInToken: BigDecimal!
 
-  "Total volume traded (in BNB)"
-  tradeVolumeBNB: BigDecimal!
+  "Total volume traded (in Token)"
+  tradeVolumeToken: BigDecimal!
 
   "Number of unique trades"
   totalTrades: BigInt!
@@ -107,14 +107,17 @@ type User @entity {
   "Number of tokens sold"
   numberTokensSold: BigInt!
 
-  "Volume of tokens purchased (in BNB)"
-  totalVolumeInBNBTokensPurchased: BigDecimal!
+  "Whether the buyer used token contract address"
+  tokenAddress: String!
 
-  "Volume of tokens sold (in BNB)"
-  totalVolumeInBNBTokensSold: BigDecimal!
+  "Volume of tokens purchased (in Token)"
+  totalVolumeInTokensPurchased: BigDecimal!
 
-  "Total fees collected (in BNB)" # For creator/treasury addresses
-  totalFeesCollectedInBNB: BigDecimal!
+  "Volume of tokens sold (in Token)"
+  totalVolumeInTokensSold: BigDecimal!
+
+  "Total fees collected (in Token)" # For creator/treasury addresses
+  totalFeesCollectedInToken: BigDecimal!
 
   "Transactions buy"
   buyTradeHistory: [Transaction!]! @derivedFrom(field: "buyer")
@@ -125,11 +128,11 @@ type User @entity {
   "Ask order history"
   askOrderHistory: [AskOrder!]! @derivedFrom(field: "seller")
 
-  "Average price of tokens purchased (in BNB)"
-  averageTokenPriceInBNBPurchased: BigDecimal!
+  "Average price of tokens purchased (in Token)"
+  averageTokenPriceInTokenPurchased: BigDecimal!
 
-  "Average price of tokens sold (in BNB)"
-  averageTokenPriceInBNBSold: BigDecimal!
+  "Average price of tokens sold (in Token)"
+  averageTokenPriceInTokenSold: BigDecimal!
 }
 
 type AskOrder @entity {
@@ -150,8 +153,11 @@ type AskOrder @entity {
   "Order type"
   orderType: OrderType!
 
-  "Ask Price (in BNB)"
+  "Ask Price (in Token)"
   askPrice: BigDecimal!
+
+  "Whether the buyer used token contract address"
+  tokenAddress: String
 
   "Seller"
   seller: User!
@@ -171,10 +177,10 @@ type Transaction @entity {
   "NFT"
   nft: NFT!
 
-  "Ask Price (in BNB)"
+  "Ask Price (in Token)"
   askPrice: BigDecimal!
 
-  "Net price to seller (in BNB)"
+  "Net price to seller (in Token)"
   netPrice: BigDecimal!
 
   "Buyer"
@@ -183,8 +189,8 @@ type Transaction @entity {
   "Seller"
   seller: User!
 
-  "Whether the buyer used BNB"
-  withBNB: Boolean!
+  "Whether the buyer used token contract address"
+  tokenAddress: String!
 }
 
 type CollectionDayData @entity {
@@ -196,8 +202,8 @@ type CollectionDayData @entity {
   "Collection"
   collection: Collection!
 
-  "Daily volume (in BNB)"
-  dailyVolumeBNB: BigDecimal!
+  "Daily volume (in Token)"
+  dailyVolumeToken: BigDecimal!
 
   "Daily unique trades"
   dailyTrades: BigInt!
@@ -209,8 +215,8 @@ type MarketPlaceDayData @entity {
   "Start date (timestamp)"
   date: Int!
 
-  "Daily volume (in BNB)"
-  dailyVolumeBNB: BigDecimal!
+  "Daily volume (in Token)"
+  dailyVolumeToken: BigDecimal!
 
   "Daily unique trades"
   dailyTrades: BigInt!

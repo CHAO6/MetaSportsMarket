@@ -8,9 +8,9 @@ dataSources:
     name: MetaSportsNFTMarket
     network: chapel
     source:
-      address: "0xd7f7C520d94E6278b43396f37815ab50d086b3f1"
+      address: "0x299f93e63fc3588a16bB67209683EEc91498915f"
       abi: MetaSportsNFTMarket
-      startBlock: 22830344
+      startBlock: 22880022
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

@@ -1,12 +1,6 @@
 [
   {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "_initNotRevealedUri",
-        "type": "string"
-      }
-    ],
+    "inputs": [],
     "stateMutability": "nonpayable",
     "type": "constructor"
   },
@@ -89,6 +83,19 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": false,
+        "internalType": "string",
+        "name": "_baseTokenURI",
+        "type": "string"
+      }
+    ],
+    "name": "BaseURISet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": true,
         "internalType": "address",
         "name": "sender",
@@ -146,6 +153,45 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_timestamp",
+        "type": "uint256"
+      }
+    ],
+    "name": "SaleStart",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_timestamp",
+        "type": "uint256"
+      }
+    ],
+    "name": "SaleStop",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "_suffixURI",
+        "type": "string"
+      }
+    ],
+    "name": "SuffixURISet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": true,
         "internalType": "address",
         "name": "from",
@@ -181,34 +227,8 @@
     "type": "event"
   },
   {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_timestamp",
-        "type": "uint256"
-      }
-    ],
-    "name": "saleStart",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_timestamp",
-        "type": "uint256"
-      }
-    ],
-    "name": "saleStop",
-    "type": "event"
-  },
-  {
     "inputs": [],
-    "name": "MAX_MINT_LIMIT",
+    "name": "PRE_SUPPLY",
     "outputs": [
       {
         "internalType": "uint256",
@@ -221,7 +241,20 @@
   },
   {
     "inputs": [],
-    "name": "WHITELIST_MAX_MINT_LIMIT",
+    "name": "ROUND_MAX_MINT_LIMIT",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "WHITELIST_ROUND_MAX_MINT_LIMIT",
     "outputs": [
       {
         "internalType": "uint256",
@@ -235,70 +268,39 @@
   {
     "inputs": [
       {
-        "components": [
-          {
-            "internalType": "uint256",
-            "name": "round",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "salePrice",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "supply",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "startTime",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "endTime",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "mintedAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "address",
-            "name": "tokenContract",
-            "type": "address"
-          }
-        ],
-        "internalType": "struct MetaSportsNFT.RoundInfo",
-        "name": "roundInfo",
-        "type": "tuple"
+        "internalType": "uint256",
+        "name": "_round",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_salePrice",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_supply",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_startTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_endTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_tokenContract",
+        "type": "address"
       }
     ],
     "name": "addRound",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "addressMinted",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -340,6 +342,19 @@
   },
   {
     "inputs": [],
+    "name": "baseTokenURI",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "baseURI",
     "outputs": [
       {
@@ -354,12 +369,48 @@
   {
     "inputs": [
       {
+        "internalType": "address[]",
+        "name": "_addresses",
+        "type": "address[]"
+      },
+      {
+        "internalType": "bool",
+        "name": "_whitelist",
+        "type": "bool"
+      }
+    ],
+    "name": "batchSetWhitelist",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint256",
         "name": "tokenId",
         "type": "uint256"
       }
     ],
     "name": "burn",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes32[]",
+        "name": "_proof",
+        "type": "bytes32[]"
+      }
+    ],
+    "name": "claim",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -423,11 +474,40 @@
             "internalType": "address",
             "name": "tokenContract",
             "type": "address"
+          },
+          {
+            "internalType": "enum MetaSportsNFT.RoundStatus",
+            "name": "status",
+            "type": "uint8"
           }
         ],
         "internalType": "struct MetaSportsNFT.RoundInfo",
         "name": "",
         "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_round",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "getRoundAddressMinted",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -460,8 +540,37 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "_address",
+        "type": "address"
+      },
+      {
         "internalType": "uint256",
-        "name": "amount",
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes32[]",
+        "name": "_proof",
+        "type": "bytes32[]"
+      }
+    ],
+    "name": "isPreAllowlist",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_amount",
         "type": "uint256"
       }
     ],
@@ -473,19 +582,6 @@
   {
     "inputs": [],
     "name": "name",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "notRevealedUri",
     "outputs": [
       {
         "internalType": "string",
@@ -542,6 +638,38 @@
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "preAllowlistMinted",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "preMerkleRoot",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "renounceOwnership",
     "outputs": [],
@@ -564,6 +692,30 @@
   {
     "inputs": [],
     "name": "round",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "roundAddressMinted",
     "outputs": [
       {
         "internalType": "uint256",
@@ -618,6 +770,11 @@
         "internalType": "address",
         "name": "tokenContract",
         "type": "address"
+      },
+      {
+        "internalType": "enum MetaSportsNFT.RoundStatus",
+        "name": "status",
+        "type": "uint8"
       }
     ],
     "stateMutability": "view",
@@ -721,17 +878,12 @@
   {
     "inputs": [
       {
-        "internalType": "address[]",
-        "name": "_addresses",
-        "type": "address[]"
-      },
-      {
-        "internalType": "bool",
-        "name": "_whitelist",
-        "type": "bool"
+        "internalType": "bytes32",
+        "name": "_root",
+        "type": "bytes32"
       }
     ],
-    "name": "setBatchWhitelist",
+    "name": "setPreMerkleRoot",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -740,11 +892,11 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "_notRevealedURI",
+        "name": "_suffixURI",
         "type": "string"
       }
     ],
-    "name": "setNotRevealedURI",
+    "name": "setSuffixURI",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -761,6 +913,19 @@
     "name": "stopsales",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "suffixURI",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -796,6 +961,19 @@
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_round",
+        "type": "uint256"
+      }
+    ],
+    "name": "toggleRoundStatus",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "tokenIds",
     "outputs": [
@@ -812,7 +990,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "tokenId",
+        "name": "_tokenId",
         "type": "uint256"
       }
     ],
@@ -880,27 +1058,45 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "salePrice",
+        "name": "_wllimint",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "supply",
+        "name": "_plimit",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateLimitPerAddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_salePrice",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "startTime",
+        "name": "_supply",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "endTime",
+        "name": "_startTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_endTime",
         "type": "uint256"
       },
       {
         "internalType": "address",
-        "name": "tokenContract",
+        "name": "_tokenContract",
         "type": "address"
       }
     ],
@@ -939,7 +1135,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "tokenContract",
+        "name": "_tokenContract",
         "type": "address"
       }
     ],
